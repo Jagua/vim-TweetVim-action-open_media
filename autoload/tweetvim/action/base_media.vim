@@ -3,7 +3,7 @@ set cpo&vim
 
 
 function! tweetvim#action#base_media#get_module(media_type) abort
-  return s:base_{a:media_type}
+  return deepcopy(s:base_{a:media_type})
 endfunction
 
 
