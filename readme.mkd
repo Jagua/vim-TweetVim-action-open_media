@@ -1,0 +1,3 @@
+# vim-TweetVim-action-open_media
+
+**vim-TweetVim-action-open_media** is a Vim plugin to open media of tweet on TweetVim.
