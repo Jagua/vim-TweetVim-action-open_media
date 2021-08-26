@@ -72,7 +72,7 @@ let s:base_photo = deepcopy(s:base)
 
 function! s:base_photo.urls() abort
   let media_list = self.tweet.extended_entities.media
-  return map(copy(media_list), 'v:val.media_url . ":orig"')
+  return map(copy(media_list), 'v:val.media_url')
 endfunction
 
 
