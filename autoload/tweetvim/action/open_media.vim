@@ -10,9 +10,10 @@ endfunction
 
 
 function! tweetvim#action#open_media#execute(tweet) abort
-  let media_type = tweetvim#action#base_media#get_media_type(a:tweet)
+  let tweet = get(a:tweet, 'retweeted_status', a:tweet)
+  let media_type = tweetvim#action#base_media#get_media_type(tweet)
   if !empty(media_type)
-    call s:open_{media_type}.do(a:tweet)
+    call s:open_{media_type}.do(tweet)
   endif
 endfunction
 
