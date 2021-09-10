@@ -35,7 +35,7 @@ function! tweetvim#action#base_media#get_media_type(tweet) abort
   end
 
   let media_type = tweet.extended_entities.media[0].type
-  if media_type !~# 'photo\|video\|animated_gif'
+  if media_type !~# '^\%(photo\|video\|animated_gif\)$'
     echo printf('unknown media type: %s', media_type)
     return ''
   endif
