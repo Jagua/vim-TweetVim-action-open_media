@@ -7,6 +7,23 @@ function! tweetvim#action#base_media#get_module(media_type) abort
 endfunction
 
 
+function! tweetvim#action#base_media#find_entity_tweet(tweet) abort
+  let tweet = a:tweet
+
+  if has_key(tweet, 'extended_entities') && !empty(tweet.extended_entities.media)
+    return [v:true, tweet]
+  endif
+
+  if has_key(tweet, 'retweeted_status')
+    return tweetvim#action#base_media#find_entity_tweet(tweet.retweeted_status)
+  elseif has_key(tweet, 'quoted_status')
+    return tweetvim#action#base_media#find_entity_tweet(tweet.quoted_status)
+  endif
+
+  return [v:false, tweet]
+endfunction
+
+
 function! tweetvim#action#base_media#get_media_type(tweet) abort
   let tweet = a:tweet
 
