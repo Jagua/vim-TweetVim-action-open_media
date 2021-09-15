@@ -20,19 +20,16 @@ function! tweetvim#action#base_media#find_entity_tweet(tweet) abort
     return tweetvim#action#base_media#find_entity_tweet(tweet.quoted_status)
   endif
 
+  echohl WarningMsg
+  echo 'no media'
+  echohl None
+
   return [v:false, tweet]
 endfunction
 
 
 function! tweetvim#action#base_media#get_media_type(tweet) abort
   let tweet = a:tweet
-
-  if !has_key(tweet, 'extended_entities') || empty(tweet.extended_entities.media)
-    echohl Comment
-    echo 'no media'
-    echohl None
-    return ''
-  end
 
   let media_type = tweet.extended_entities.media[0].type
   if media_type !~# '^\%(photo\|video\|animated_gif\)$'
